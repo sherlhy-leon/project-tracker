@@ -8,14 +8,14 @@ const PROJECTS: Project[] = [
       id: "1",
       name: 'Proyecto 1',
       description: 'Descripción del Proyecto 1',
-      status: 'Pending',
+      status: 'pending',
       startDate: new Date(2022,4,6)
     },
     {
       id: "2",
       name: 'Proyecto 2',
       description: 'Descripción del Proyecto 2',
-      status: 'Pending',
+      status: 'pending',
       startDate: new Date(2023,6,20)
 
     },
@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
       id: "3",
       name: 'Proyecto 3',
       description: 'Descripción del Proyecto 3',
-      status: 'Completed',
+      status: 'completed',
       startDate: new Date(2021,3,6),
       endDate: new Date(2021,9,30)
     },
@@ -31,14 +31,14 @@ const PROJECTS: Project[] = [
       id: "4",
       name: 'Proyecto 4',
       description: 'Descripción del Proyecto 4',
-      status: 'Pending',
+      status: 'pending',
       startDate: new Date(2023,10,15)
     },
     {
       id: "5",
       name: 'Proyecto 5',
       description: 'Descripción del Proyecto 5',
-      status: 'Completed',
+      status: 'completed',
       startDate: new Date(2023,2,10),
       endDate: new Date(2023,6,24)
     },
@@ -46,7 +46,7 @@ const PROJECTS: Project[] = [
       id: "6",
       name: 'Proyecto 6',
       description: 'Descripción del Proyecto 6',
-      status: 'Completed',
+      status: 'completed',
       startDate: new Date(2023,2,10),
       endDate: new Date(2023,6,24)
     },
@@ -54,7 +54,7 @@ const PROJECTS: Project[] = [
       id: "7",
       name: 'Proyecto 7',
       description: 'Descripción del Proyecto 7',
-      status: 'Completed',
+      status: 'completed',
       startDate: new Date(2023,2,10),
       endDate: new Date(2023,6,24)
     },
@@ -74,13 +74,9 @@ export class ProjectService {
   }
 
   getPendingProjects(): Project[] {
-    return this.projects.filter(project => project.status === 'Pending');
+    return this.projects.filter(project => project.status === 'pending');
   }
 
-  getCompletedProjects(): Project[] {
-    console.log("getCompletedProjects")
-    return this.projects.filter(project => project.status === 'Completed');
-  }
 
   markAsCompleted(projectsIds: string[]): void {
     this.httpClient.put<{projects: Project[]}>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects)).subscribe(data => this.projects = data);

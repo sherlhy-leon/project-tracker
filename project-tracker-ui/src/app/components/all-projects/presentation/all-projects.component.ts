@@ -19,7 +19,7 @@ export class AllProjectsComponent {
     }
   }
 
-  allProjects: MatTableDataSource<Project>// = new MatTableDataSource<Project>([]);
+  allProjects: MatTableDataSource<Project>
   displayedColumns: string[] = ['select', 'name', 'status', 'startDate', 'endDate', 'description'];
   selection = new SelectionModel<Project>(true, []);
   hideCompleteButton: boolean = true;
@@ -47,7 +47,7 @@ export class AllProjectsComponent {
     this.isAllSelected() ?
       this.selection.clear() :
       this.allProjects.data.forEach(row => {
-        if(row.status === 'Pending') {
+        if(row.status === 'pending') {
           this.selection.select(row)
         }
       });
@@ -62,7 +62,7 @@ export class AllProjectsComponent {
   }
   
   isAllSelected() {
-    return this.selection.selected.length === this.allProjects?.data.filter(p => p.status === 'Pending').length;
+    return this.selection.selected.length === this.allProjects?.data.filter(p => p.status === 'pending').length;
   }
 
   completeProject() {
@@ -71,7 +71,7 @@ export class AllProjectsComponent {
   }
 
   isCompleted(project: Project) {
-    return project.status === 'Completed';
+    return project.status === 'completed';
   }
 
   private setDataSourceAttributes() {

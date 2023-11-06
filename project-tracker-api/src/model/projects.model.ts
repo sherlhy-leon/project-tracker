@@ -4,5 +4,5 @@ export interface Project {
     description: string;
     startDate: Date;
     endDate?: Date
-    status: 'Completed' | 'Pending'
+    status: 'completed' | 'pending'
 }
