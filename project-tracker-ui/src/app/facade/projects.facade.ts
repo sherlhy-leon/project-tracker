@@ -28,4 +28,10 @@ export class ProjectFacade {
             });
         }
     }
+
+    completeProjects(projectsIds: string[]) {
+        this.projectService.completeProjects(projectsIds).subscribe(projects => {
+            this.#projects.next(projects);
+        });
+    }
 }

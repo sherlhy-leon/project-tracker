@@ -8,7 +8,7 @@ export const getProjects = async (req: Request, res: Response): Promise<void> =>
 };
 
 export const completeProject = async (req: Request, res: Response): Promise<void> => {
-    console.log("completeProject endpoint invoked")
+    console.log("completeProject endpoint invoked", req.body)
     const projectIds = req.body;
     const data = await ProjectService.completeProject(projectIds);
     res.status(201).json({ projects: data });

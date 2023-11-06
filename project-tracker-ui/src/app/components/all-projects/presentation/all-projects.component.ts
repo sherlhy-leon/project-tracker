@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, Input  } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, Input, Output, EventEmitter  } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -14,10 +14,10 @@ import { MatPaginator } from '@angular/material/paginator';
 export class AllProjectsComponent {
   @Input() set projects(data: Project[]) {
     if(data?.length > 0) {
-      console.log("DATA RECEIVED IN COMPONENT", data)
       this.allProjects = new MatTableDataSource<Project>(data);
     }
   }
+  @Output() completeProjects: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   allProjects: MatTableDataSource<Project>
   displayedColumns: string[] = ['select', 'name', 'status', 'startDate', 'endDate', 'description'];
@@ -38,10 +38,11 @@ export class AllProjectsComponent {
       this.setDataSourceAttributes();
     }
   }
+
   private sort: MatSort;
   private paginator: MatPaginator;
 
-  constructor(private projectService: ProjectService, private cdr: ChangeDetectorRef) {}
+  constructor( private cdr: ChangeDetectorRef) {}
 
   masterToggle() {
     this.isAllSelected() ?
@@ -66,7 +67,8 @@ export class AllProjectsComponent {
   }
 
   completeProject() {
-    this.projectService.markAsCompleted(this.selection.selected.map(p => p.id));
+    console.log("Emitting", this.selection.selected.map(p => p.id))
+    this.completeProjects.emit(this.selection.selected.map(p => p.id));
     this.selection.clear();
   }
 

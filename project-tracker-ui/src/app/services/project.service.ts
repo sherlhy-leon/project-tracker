@@ -78,7 +78,7 @@ export class ProjectService {
   }
 
 
-  markAsCompleted(projectsIds: string[]): void {
-    this.httpClient.put<{projects: Project[]}>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects)).subscribe(data => this.projects = data);
+  completeProjects(projectsIds: string[]): Observable<Project[]> {
+    return this.httpClient.put<{projects: Project[]}>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects));
   }
 }
