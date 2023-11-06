@@ -1,0 +1,22 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin:  0 1rem;
+
+    .mat-icon-button {
+        position: relative;
+    }
+
+    &-header {
+        display: inline-flex;
+        align-items: baseline;
+        width: 100%;
+    }
+
+    &-content {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-y: scroll !important;
+    }
+}

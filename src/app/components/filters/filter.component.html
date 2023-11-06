@@ -1,0 +1,29 @@
+    <button mat-chip [matMenuTriggerFor]="menu" (click)="toggleIcon()">
+        <div> {{ chipLabel }} </div>
+        <mat-icon *ngIf="!isSomeFilterSelected; else clear"> {{ arrowIcon }}</mat-icon>
+    </button>
+
+<mat-menu #menu="matMenu" (close)="toggleIcon()">
+    <div class="filter">
+        <div class="filter-header">
+            <h3 class="mat-h3"> {{ title }} </h3>
+            <button mat-icon-button (click)="closeMenu()"><mat-icon>close</mat-icon></button>
+        </div>
+        <div class="filter-menu-content">
+            <ng-container *ngFor="let filter of filters">
+                <div mat-menu-item (click)="$event.stopPropagation(); selectFilter(filter)">
+                    <mat-checkbox color="primary">
+                        {{ filter.value }}
+                    </mat-checkbox>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+</mat-menu>
+
+<ng-template #clear>
+    <button mat-icon-button (click)="$event.stopPropagation(); unselectFilters()">
+        <mat-icon>clear</mat-icon>
+    </button>
+</ng-template>
