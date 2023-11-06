@@ -11,17 +11,21 @@ import { CreateData } from "../models/create-data.model";
 export class ProjectService {
   private readonly API_BASE_RUL = "http://localhost:3000";
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    return this.httpClient.get<{projects: Project[]}>(`${this.API_BASE_RUL}/projects`).pipe(tap((d) => console.log("data received", d)), map(res => res.projects));
+    return this.httpClient.get<{ projects: Project[] }>(`${this.API_BASE_RUL}/projects`).pipe(tap((d) => console.log("data received", d)), map(res => res.projects));
   }
 
   completeProjects(projectsIds: string[]): Observable<Project[]> {
-    return this.httpClient.put<{projects: Project[]}>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects));
+    return this.httpClient.put<{ projects: Project[] }>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects));
   }
 
   createProject(project: CreateData): Observable<Project[]> {
-    return this.httpClient.post<{projects: Project[]}>(`${this.API_BASE_RUL}/create-project`, project).pipe(map(res => res.projects));
+    return this.httpClient.post<{ projects: Project[] }>(`${this.API_BASE_RUL}/create-project`, project).pipe(map(res => res.projects));
+  }
+
+  deleteProject(projectId: string): Observable<Project[]> {
+    return this.httpClient.delete<{ projects: Project[] }>(`${this.API_BASE_RUL}/delete-project/${projectId}`).pipe(map(res => res.projects));
   }
 }

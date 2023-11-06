@@ -41,4 +41,11 @@ export class ProjectFacade {
             this.#projects.next(projects);
         });
     }
+
+    deleteProject(projectId: string) {
+        this.projectService.deleteProject(projectId).subscribe(projects => {
+            this.#projects.next(projects);
+        });
+    }
+
 }

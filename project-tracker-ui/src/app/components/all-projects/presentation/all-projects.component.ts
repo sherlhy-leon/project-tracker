@@ -19,12 +19,14 @@ export class AllProjectsComponent {
     }
   }
   @Output() completeProjects: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() deleteProject: EventEmitter<string> = new EventEmitter<string>();
 
   allProjects: MatTableDataSource<Project>
-  displayedColumns: string[] = ['select', 'name', 'status', 'startDate', 'endDate', 'description'];
+  displayedColumns: string[] = ['select', 'name', 'status', 'startDate', 'endDate', 'description','actions'];
   selection = new SelectionModel<Project>(true, []);
   hideCompleteButton: boolean = true;
   pageSize: number = 5;
+  hoverRowId: string;
 
   @ViewChild(MatSort) set matSort(ms:MatSort) {
     if(ms){
@@ -67,7 +69,7 @@ export class AllProjectsComponent {
     return this.selection.selected.length === this.allProjects?.data.filter(p => p.status === 'pending').length;
   }
 
-  completeProject() {
+  completeProjectsHandler() {
     console.log("Emitting", this.selection.selected.map(p => p.id))
     this.completeProjects.emit(this.selection.selected.map(p => p.id));
     this.selection.clear();
@@ -75,6 +77,14 @@ export class AllProjectsComponent {
 
   isCompleted(project: Project) {
     return project.status === 'completed';
+  }
+
+  hover(project: Project) {
+    this.hoverRowId = project.id;
+  }
+
+  deleteProjectHandler(projectId: string) {
+    this.deleteProject.emit(projectId);
   }
 
   private setDataSourceAttributes() {

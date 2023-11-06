@@ -101,3 +101,13 @@ export const createProject = async (project: Project): Promise<Project[]> => {
     }, 200);
   });
 }
+
+export const deleteProject = async (projectId: string): Promise<Project[]> => {
+  return new Promise(res => {
+    setTimeout(() => {
+      const index = DB.findIndex(project => project.id === projectId);
+      DB.splice(index, 1);
+      res(DB);
+    }, 200);
+  });
+}

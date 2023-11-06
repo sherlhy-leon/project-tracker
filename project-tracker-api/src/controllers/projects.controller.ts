@@ -21,3 +21,11 @@ export const createProject = async (req: Request, res: Response): Promise<void> 
     const data = await ProjectService.createProject(project);
     res.status(201).json({ projects: data });
 };
+
+
+export const deleteProject = async (req: Request, res: Response): Promise<void> => {
+    console.log("deleteProject endpoint invoked", req.body);
+    const projectId = req.params.id;
+    const data = await ProjectService.deleteProject(projectId);
+    res.status(201).json({ projects: data });
+};

@@ -1,5 +1,5 @@
 import express from 'express';
-import { completeProject, createProject, getProjects } from './src/controllers/projects.controller';
+import { completeProject, createProject, deleteProject, getProjects } from './src/controllers/projects.controller';
 var cors = require('cors');
 
 const app = express();
@@ -11,6 +11,7 @@ app.use(express.json());
 app.get('/projects', getProjects);
 app.put('/complete-projects', completeProject);
 app.post('/create-project', createProject);
+app.delete('/delete-project/:id', deleteProject);
 app.get('/', (req, res) => res.send("Alive!"));
 
 // Start the server

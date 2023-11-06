@@ -43,6 +43,16 @@
     }
 }
 
+.delete-button {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.delete-button-appear {
+    opacity: 1;
+}
+
 mat-row {
     border: none;
 }
