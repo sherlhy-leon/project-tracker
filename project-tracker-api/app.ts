@@ -1,9 +1,10 @@
 import express from 'express';
 import { completeProject, getProjects } from './src/controllers/projects.controller';
+var cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.use(cors())
 app.use(express.json());
 
 // Define a simple route
