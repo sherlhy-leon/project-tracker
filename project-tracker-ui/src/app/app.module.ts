@@ -26,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     PendingProjectsModule,
     HeaderModule,
     FilterrModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

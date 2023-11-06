@@ -4,11 +4,17 @@
     display: flex;
     flex-direction: column;
 
-    .actions {
+    .count-and-complete {
         display: flex;
         align-items: center;
         font-weight: 400;
-        padding: 20px;
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:  20px;
     }
 
     .all-projects-table {

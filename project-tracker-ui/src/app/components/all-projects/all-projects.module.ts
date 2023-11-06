@@ -4,10 +4,11 @@ import { MaterialModule } from "src/app/material.module";
 import { AllProjectsComponent } from "./presentation/all-projects.component";
 import { ProjectService } from "src/app/services/project.service";
 import { AllProjectsAbstractionComponent } from "./abstraction/all-project.abstraction";
+import { CreateModalModule } from "../create-modal/create-modal.module";
 
 @NgModule({
     declarations: [AllProjectsComponent, AllProjectsAbstractionComponent],
-    imports: [CommonModule, MaterialModule],
+    imports: [CommonModule, CreateModalModule, MaterialModule],
     providers: [ProjectService],
     exports: [AllProjectsComponent]
   })

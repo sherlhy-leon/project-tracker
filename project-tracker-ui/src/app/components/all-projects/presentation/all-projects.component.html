@@ -2,16 +2,16 @@
 <div class="container">
     <!-- <app-filter ></app-filter> -->
     <div class="actions">
+      <div class="count-and-complete">
         <span class="count-label">
-            <span class="selected-count"> {{ selection.selected.length}} </span>
-            <span class="custom-label">Selected</span>
+          <span class="selected-count"> {{ selection.selected.length}} </span>
+          <span class="custom-label">Selected</span>
         </span>
-        <button mat-button class="create-button" color="primary">
-            CREATE
-        </button>
         <button mat-button class="completed-button" color="primary" [disabled]="hideCompleteButton" (click)="completeProject()">
             COMPLETE
         </button>
+      </div>
+      <app-create-modal></app-create-modal>
     </div>
     <table class="all-projects-table" mat-table [dataSource]="allProjects" matSort matSortActive="status" matSortDirection="desc">
         <ng-container matColumnDef="select">
