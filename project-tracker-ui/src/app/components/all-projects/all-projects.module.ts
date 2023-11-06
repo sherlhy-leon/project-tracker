@@ -4,7 +4,6 @@ import { MaterialModule } from "src/app/material.module";
 import { AllProjectsComponent } from "./presentation/all-projects.component";
 import { ProjectService } from "src/app/services/project.service";
 import { AllProjectsAbstractionComponent } from "./abstraction/all-project.abstraction";
-import { ProjectFacade } from "../../facade/all-projects.facade";
 
 @NgModule({
     declarations: [AllProjectsComponent, AllProjectsAbstractionComponent],

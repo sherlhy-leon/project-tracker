@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { Project } from "src/app/models/project.model";
-import { ProjectService } from "src/app/services/project.service";
-import { ProjectFacade } from "../../../facade/all-projects.facade";
+import { ProjectFacade } from "../../../facade/projects.facade";
 
 @Component({
     selector: 'app-abstraction-all-projects',
