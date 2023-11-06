@@ -1,5 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Project } from "../models/project.model";
 import { Injectable } from '@angular/core';
+import { Observable, map, tap } from "rxjs";
 
 const PROJECTS: Project[] = [
     {
@@ -63,11 +65,12 @@ const PROJECTS: Project[] = [
 })
 export class ProjectService {
   private projects: Project[] = PROJECTS;
+  private readonly API_BASE_RUL = "http://localhost:3000";
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  getAllProjects(): Project[] {
-    return this.projects;
+  getAllProjects(): Observable<Project[]> {
+    return this.httpClient.get<{projects: Project[]}>(`${this.API_BASE_RUL}/projects`).pipe(tap((d) => console.log("data received", d)), map(res => res.projects));
   }
 
   getPendingProjects(): Project[] {
@@ -79,17 +82,7 @@ export class ProjectService {
     return this.projects.filter(project => project.status === 'Completed');
   }
 
-  markAsCompleted(projects: Project[]): void {
-    projects.forEach(project => {
-      const index = this.projects.findIndex((p) => p.id === project.id);
-      if (index !== -1) {
-          this.projects[index] = {
-              ...this.projects[index],
-              status: 'Completed',
-              endDate: new Date()
-          }
-      }
-    });
-    console.log(this.projects);
+  markAsCompleted(projectsIds: string[]): void {
+    this.httpClient.put<{projects: Project[]}>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects)).subscribe(data => this.projects = data);
   }
 }

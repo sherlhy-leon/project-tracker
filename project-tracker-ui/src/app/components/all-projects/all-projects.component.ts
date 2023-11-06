@@ -35,7 +35,9 @@ export class AllProjectsComponent implements OnInit {
   constructor(private projectService: ProjectService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.allProjects = new MatTableDataSource<Project>(this.projectService.getAllProjects());
+    this.projectService.getAllProjects().subscribe((projects) => {
+      this.allProjects = new MatTableDataSource<Project>(projects);
+    })
   }
 
   masterToggle() {
@@ -61,7 +63,7 @@ export class AllProjectsComponent implements OnInit {
   }
 
   completeProject() {
-    this.projectService.markAsCompleted(this.selection.selected);
+    this.projectService.markAsCompleted(this.selection.selected.map(p => p.id));
     this.selection.clear();
   }
 

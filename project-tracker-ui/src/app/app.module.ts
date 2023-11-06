@@ -11,6 +11,7 @@ import { CompletedProjectsModule } from './components/completed-projects/complet
 import { PendingProjectsModule } from './components/pending-projects/pending-projects.module';
 import { HeaderModule } from './components/header/header.module';
 import { FilterrModule } from './components/filters/filter.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { FilterrModule } from './components/filters/filter.module';
     CompletedProjectsModule,
     PendingProjectsModule,
     HeaderModule,
-    FilterrModule
+    FilterrModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
