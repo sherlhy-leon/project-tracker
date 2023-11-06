@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild  } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, Input  } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -11,18 +11,27 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './all-projects.component.html',
   styleUrls: ['./all-projects.component.scss']
 })
-export class AllProjectsComponent implements OnInit {
-  allProjects: MatTableDataSource<Project>;
+export class AllProjectsComponent {
+  @Input() set projects(data: Project[]) {
+    if(data?.length > 0) {
+      console.log("DATA RECEIVED IN COMPONENT", data)
+      this.allProjects = new MatTableDataSource<Project>(data);
+    }
+  }
+
+  allProjects: MatTableDataSource<Project>// = new MatTableDataSource<Project>([]);
   displayedColumns: string[] = ['select', 'name', 'status', 'startDate', 'endDate', 'description'];
   selection = new SelectionModel<Project>(true, []);
   hideCompleteButton: boolean = true;
   pageSize: number = 5;
+
   @ViewChild(MatSort) set matSort(ms:MatSort) {
     if(ms){
       this.sort = ms;
       this.setDataSourceAttributes();
     }
   }
+
   @ViewChild(MatPaginator) set matPaginator( mp: MatPaginator) {
     if(mp){
       this.paginator = mp;
@@ -33,12 +42,6 @@ export class AllProjectsComponent implements OnInit {
   private paginator: MatPaginator;
 
   constructor(private projectService: ProjectService, private cdr: ChangeDetectorRef) {}
-
-  ngOnInit() {
-    this.projectService.getAllProjects().subscribe((projects) => {
-      this.allProjects = new MatTableDataSource<Project>(projects);
-    })
-  }
 
   masterToggle() {
     this.isAllSelected() ?
@@ -59,7 +62,7 @@ export class AllProjectsComponent implements OnInit {
   }
   
   isAllSelected() {
-    return this.selection.selected.length === this.allProjects.data.filter(p => p.status === 'Pending').length;
+    return this.selection.selected.length === this.allProjects?.data.filter(p => p.status === 'Pending').length;
   }
 
   completeProject() {
