@@ -1,5 +1,5 @@
 <div class="container-table">
-    <table class="completed-table" mat-table [dataSource]="projects">
+    <table class="completed-table" mat-table [dataSource]="completedProjects">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let row"> {{ row.name }} </td>

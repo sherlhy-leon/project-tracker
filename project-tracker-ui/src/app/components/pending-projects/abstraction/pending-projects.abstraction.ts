@@ -4,16 +4,16 @@ import { Project } from "src/app/models/project.model";
 import { ProjectFacade } from "../../../facade/projects.facade";
 
 @Component({
-    selector: 'app-abstraction-completed-projects',
-    template: `<app-completed-projects [completedProjects]="(projects$ | async)!"> </app-completed-projects>`,
+    selector: 'app-abstraction-pending-projects',
+    template: `<app-pending-projects [pendingProjects]="(projects$ | async)!"> </app-pending-projects>`,
 })
-export class CompletedProjectsAbstractionComponent implements OnInit  {
+export class PendingProjectsAbstractionComponent implements OnInit  {
     projects$: Observable<Project[]>;
 
     constructor(private projectFacade: ProjectFacade) {}
 
     ngOnInit(): void {
-        this.projects$ = this.projectFacade.completedProjects$;
+        this.projects$ = this.projectFacade.pendingProjects$;
         this.projectFacade.loadProjects(); //this could be moved to a resolver
     }
 }

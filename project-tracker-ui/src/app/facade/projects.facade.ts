@@ -14,6 +14,11 @@ export class ProjectFacade {
         tap((data) => console.log("completed data", data))
     );
 
+    pendingProjects$: Observable<Project[]> = this.#projects.asObservable().pipe(
+        map(projects => projects.filter(project => project.status === 'pending')),
+        tap((data) => console.log("pending data", data))
+    );
+
     constructor(private projectService: ProjectService) { }
 
     loadProjects() {

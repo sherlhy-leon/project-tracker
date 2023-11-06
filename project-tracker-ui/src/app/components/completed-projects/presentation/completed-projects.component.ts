@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
-import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-completed-projects',
@@ -8,6 +7,6 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./completed-projects.component.scss']
 })
 export class CompletedProjectsComponent {
-  @Input() projects: Project[] = [];
+  @Input() completedProjects: Project[] = [];
   displayedColumns: string[] = ['name', 'startDate', 'endDate', 'description'];
 }

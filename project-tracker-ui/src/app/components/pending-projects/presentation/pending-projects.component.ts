@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -9,7 +9,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./pending-projects.component.scss']
 })
 export class PendingProjectsComponent implements OnInit {
-  pendingProjects: Project[] = [];
+  @Input() pendingProjects: Project[] = [];
   displayedColumns: string[] = ['select', 'name', 'startDate', 'endDate', 'description'];
   selection = new SelectionModel<Project>(true, []);
 
