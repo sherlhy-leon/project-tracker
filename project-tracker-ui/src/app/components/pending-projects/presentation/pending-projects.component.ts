@@ -8,18 +8,11 @@ import { SelectionModel } from '@angular/cdk/collections';
   templateUrl: './pending-projects.component.html',
   styleUrls: ['./pending-projects.component.scss']
 })
-export class PendingProjectsComponent implements OnInit {
+export class PendingProjectsComponent {
   @Input() pendingProjects: Project[] = [];
   displayedColumns: string[] = ['select', 'name', 'startDate', 'endDate', 'description'];
   selection = new SelectionModel<Project>(true, []);
-
-  constructor(private projectService: ProjectService) {
-  }
-
-  ngOnInit() {
-    this.pendingProjects = this.projectService.getPendingProjects();
-  }
-
+  
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :

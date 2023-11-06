@@ -15,6 +15,7 @@ export class AllProjectsComponent {
   @Input() set projects(data: Project[]) {
     if(data?.length > 0) {
       this.allProjects = new MatTableDataSource<Project>(data);
+      this.setDataSourceAttributes();
     }
   }
   @Output() completeProjects: EventEmitter<string[]> = new EventEmitter<string[]>();
