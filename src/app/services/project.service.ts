@@ -40,6 +40,22 @@ const PROJECTS: Project[] = [
       startDate: new Date(2023,2,10),
       endDate: new Date(2023,6,24)
     },
+    {
+      id: "6",
+      name: 'Proyecto 6',
+      description: 'Descripción del Proyecto 6',
+      status: 'Completed',
+      startDate: new Date(2023,2,10),
+      endDate: new Date(2023,6,24)
+    },
+    {
+      id: "7",
+      name: 'Proyecto 7',
+      description: 'Descripción del Proyecto 7',
+      status: 'Completed',
+      startDate: new Date(2023,2,10),
+      endDate: new Date(2023,6,24)
+    },
 ];
 
 @Injectable({
@@ -59,17 +75,21 @@ export class ProjectService {
   }
 
   getCompletedProjects(): Project[] {
+    console.log("getCompletedProjects")
     return this.projects.filter(project => project.status === 'Completed');
   }
 
-  markAsCompleted(project: Project): void {
-    const index = this.projects.findIndex((p) => p.id === project.id);
-    if (index !== -1) {
-        this.projects[index] = {
-            ...this.projects[index],
-            status: 'Completed',
-            endDate: new Date()
-        }
-    }
+  markAsCompleted(projects: Project[]): void {
+    projects.forEach(project => {
+      const index = this.projects.findIndex((p) => p.id === project.id);
+      if (index !== -1) {
+          this.projects[index] = {
+              ...this.projects[index],
+              status: 'Completed',
+              endDate: new Date()
+          }
+      }
+    });
+    console.log(this.projects);
   }
 }
