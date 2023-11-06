@@ -13,3 +13,11 @@ export const completeProject = async (req: Request, res: Response): Promise<void
     const data = await ProjectService.completeProject(projectIds);
     res.status(201).json({ projects: data });
 };
+
+
+export const createProject = async (req: Request, res: Response): Promise<void> => {
+    console.log("createProject endpoint invoked", req.body);
+    const project = req.body;
+    const data = await ProjectService.createProject(project);
+    res.status(201).json({ projects: data });
+};

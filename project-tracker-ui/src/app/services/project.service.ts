@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Project } from "../models/project.model";
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from "rxjs";
+import { CreateData } from "../models/create-data.model";
 
 
 @Injectable({
@@ -18,5 +19,9 @@ export class ProjectService {
 
   completeProjects(projectsIds: string[]): Observable<Project[]> {
     return this.httpClient.put<{projects: Project[]}>(`${this.API_BASE_RUL}/complete-projects`, projectsIds).pipe(map(res => res.projects));
+  }
+
+  createProject(project: CreateData): Observable<Project[]> {
+    return this.httpClient.post<{projects: Project[]}>(`${this.API_BASE_RUL}/create-project`, project).pipe(map(res => res.projects));
   }
 }

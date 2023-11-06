@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from "rxjs";
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
+import { CreateData } from '../models/create-data.model';
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +32,12 @@ export class ProjectFacade {
 
     completeProjects(projectsIds: string[]) {
         this.projectService.completeProjects(projectsIds).subscribe(projects => {
+            this.#projects.next(projects);
+        });
+    }
+
+    createProject(project: CreateData) {
+        this.projectService.createProject(project).subscribe(projects => {
             this.#projects.next(projects);
         });
     }

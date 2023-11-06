@@ -1,20 +1,22 @@
-<h2 mat-dialog-title>Create New Project</h2>
-
-<mat-dialog-content>
-    <form [formGroup]="form">
-        <div class="create-form">
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name" placeholder="Name">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description" placeholder="Description" maxlength="200"></textarea>
-            </mat-form-field>
-        </div>
-    </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="onCancel()">Cancelar</button>
-    <button mat-button (click)="onSave()" [disabled]="disabledCreate()">Create</button>
-</mat-dialog-actions>
+<div class="create-form">
+    <h2 mat-dialog-title>Create New Project</h2>
+    <mat-dialog-content>
+        <form [formGroup]="form">
+            <div class="content">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Name">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description" placeholder="Description"
+                        maxlength="200"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="onCancel()">Cancelar</button>
+        <button mat-button (click)="onSave()" [disabled]="disabledCreate()">Create</button>
+    </mat-dialog-actions>
+</div>
