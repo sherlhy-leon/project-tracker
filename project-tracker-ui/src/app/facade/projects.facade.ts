@@ -11,13 +11,11 @@ export class ProjectFacade {
     #projects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
     projects$: Observable<Project[]> = this.#projects.asObservable();
     completedProjects$: Observable<Project[]> = this.#projects.asObservable().pipe(
-        map(projects => projects.filter(project => project.status === 'completed')),
-        tap((data) => console.log("completed data", data))
+        map(projects => projects.filter(project => project.status === 'completed'))
     );
 
     pendingProjects$: Observable<Project[]> = this.#projects.asObservable().pipe(
-        map(projects => projects.filter(project => project.status === 'pending')),
-        tap((data) => console.log("pending data", data))
+        map(projects => projects.filter(project => project.status === 'pending'))
     );
 
     constructor(private projectService: ProjectService) { }

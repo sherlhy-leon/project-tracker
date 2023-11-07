@@ -14,7 +14,7 @@ export class ProjectService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    return this.httpClient.get<{ projects: Project[] }>(`${this.API_BASE_RUL}/projects`).pipe(tap((d) => console.log("data received", d)), map(res => res.projects));
+    return this.httpClient.get<{ projects: Project[] }>(`${this.API_BASE_RUL}/projects`).pipe(map(res => res.projects));
   }
 
   completeProjects(projectsIds: string[]): Observable<Project[]> {
