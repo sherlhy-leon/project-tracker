@@ -24,8 +24,16 @@ export const createProject = async (req: Request, res: Response): Promise<void> 
 
 
 export const deleteProject = async (req: Request, res: Response): Promise<void> => {
-    console.log("deleteProject endpoint invoked", req.body);
+    console.log("deleteProject endpoint invoked", req.params.id);
     const projectId = req.params.id;
     const data = await ProjectService.deleteProject(projectId);
+    res.status(201).json({ projects: data });
+};
+
+export const editProject = async (req: Request, res: Response): Promise<void> => {
+    console.log("editProject endpoint invoked", req.body, req.params.id)
+    const project = req.body;
+    const projectId = req.params.id;
+    const data = await ProjectService.editProject(projectId, project);
     res.status(201).json({ projects: data });
 };

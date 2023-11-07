@@ -111,3 +111,17 @@ export const deleteProject = async (projectId: string): Promise<Project[]> => {
     }, 200);
   });
 }
+
+export const editProject = async (projectId: string, project: Project): Promise<Project[]> => {
+  return new Promise(res => {
+    setTimeout(() => {
+      const index = DB.findIndex(project => project.id === projectId);
+      DB[index] = {
+        ...DB[index],
+        name: project.name,
+        description: project.description
+      };
+      res(DB);
+    }, 200);
+  });
+}
