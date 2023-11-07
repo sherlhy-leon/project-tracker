@@ -13,9 +13,10 @@ const routes: Routes = [
       { path: 'all', component: AllProjectsAbstractionComponent },
       { path: 'completed', component: CompletedProjectsAbstractionComponent },
       { path: 'pending', component: PendingProjectsAbstractionComponent },
-      { path: '**', pathMatch:'full', redirectTo: 'all' },
+      { path: '**', pathMatch: 'full', redirectTo: 'all' },
     ]
   },
+  { path: '**', pathMatch: 'full', redirectTo: 'projects/all' }
 ];
 
 @NgModule({
