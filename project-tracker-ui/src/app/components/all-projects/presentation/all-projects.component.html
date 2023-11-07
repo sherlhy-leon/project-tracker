@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="allProjects?.data">
     <!-- <app-filter ></app-filter> -->
     <div class="actions">
       <div class="count-and-complete">
@@ -26,7 +26,6 @@
             <mat-checkbox 
                 [ngClass]="{
                     'completed-row-checkbox' : isCompleted(row),
-                    'row-clicked' : row.id === selection.isSelected(row)
                 }"
                 color="primary" (click)="$event.stopPropagation()" (change)="toogleSelection(row)"></mat-checkbox>
           </td>
@@ -65,7 +64,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row 
             [ngClass]="{
-                'row-clicked' : row.id === selection.isSelected(row),
                 'completed-row' : isCompleted(row),
                 'pending-row' : !isCompleted(row),
             }" 

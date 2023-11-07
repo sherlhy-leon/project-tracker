@@ -1,12 +1,13 @@
 
 <div class="page-container">
-    <nav class="nav-field" mat-tab-nav-bar>
+    <nav class="nav-field" mat-tab-nav-bar [tabPanel]="tabPanel">
         <a mat-tab-link  *ngFor="let link of projectsTabs; index as i" id="tab{{ i }}" [routerLink]="link?.url" routerLinkActive #rla="routerLinkActive"
         [active]="rla.isActive">
-            {{ link?.label }}
+            {{ link?.label }} ({{link?.count | async}})
         </a>
     </nav>
-    
-    <router-outlet></router-outlet>
+    <mat-tab-nav-panel #tabPanel>
+        <router-outlet></router-outlet>
+    </mat-tab-nav-panel>
 </div>
 
