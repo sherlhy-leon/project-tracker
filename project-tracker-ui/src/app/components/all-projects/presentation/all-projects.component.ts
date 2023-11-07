@@ -69,7 +69,6 @@ export class AllProjectsComponent {
   }
 
   completeProjectsHandler() {
-    console.log("Emitting", this.selection.selected.map(p => p.id))
     this.completeProjects.emit(this.selection.selected.map(p => p.id));
     this.selection.clear();
   }

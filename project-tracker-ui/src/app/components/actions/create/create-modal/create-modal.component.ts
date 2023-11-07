@@ -15,13 +15,12 @@ export class CreateModalComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateFormComponent);
-
     dialogRef.afterClosed()
       .pipe(tap((outputData: CreateData) => this.execute(outputData)))
       .subscribe();
   }
 
-  private execute(outputData: CreateData) {
+  private execute(outputData: CreateData): void {
     this.projectFacade.createProject(outputData)
   }
 }
