@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CompletedProjectsComponent } from './completed-projects.component';
+import { MatTableModule } from '@angular/material/table';
 
 describe('CompletedProjectsComponent', () => {
   let component: CompletedProjectsComponent;
@@ -8,6 +9,7 @@ describe('CompletedProjectsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [MatTableModule],
       declarations: [CompletedProjectsComponent]
     });
     fixture = TestBed.createComponent(CompletedProjectsComponent);

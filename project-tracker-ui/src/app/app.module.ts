@@ -9,7 +9,6 @@ import { ProjectTrackerModule } from './page/project-tracker/project-tracker.mod
 import { AllProjectsModule } from './components/all-projects/all-projects.module';
 import { CompletedProjectsModule } from './components/completed-projects/completed-projects.module';
 import { PendingProjectsModule } from './components/pending-projects/pending-projects.module';
-import { HeaderModule } from './components/header/header.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -23,8 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     AllProjectsModule,
     CompletedProjectsModule,
     PendingProjectsModule,
-    HeaderModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

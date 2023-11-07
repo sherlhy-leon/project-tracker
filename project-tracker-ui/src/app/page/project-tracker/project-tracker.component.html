@@ -1,4 +1,5 @@
 
+<app-header></app-header>
 <div class="page-container">
     <nav class="nav-field" mat-tab-nav-bar [tabPanel]="tabPanel">
         <a mat-tab-link  *ngFor="let link of projectsTabs; index as i" id="tab{{ i }}" [routerLink]="link?.url" routerLinkActive #rla="routerLinkActive"

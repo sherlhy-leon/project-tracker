@@ -49,7 +49,7 @@
       
         <ng-container matColumnDef="endDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> End Date </th>
-          <td mat-cell *matCellDef="let row"> {{ row?.endDate ? (row.endDate | date) : '--' }} </td>
+          <td mat-cell *matCellDef="let row"> {{ row?.endDate ? (row.endDate | date: 'MM/dd/yyyy') : '--' }} </td>
         </ng-container>
       
         <ng-container matColumnDef="description" >
