@@ -1,22 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AllProjectsComponent } from './all-projects.component';
 
-import { ProjectService } from 'src/app/services/project.service';
-import { ProjectsComponent } from './all-projects.component';
-
-describe('ProjectsComponent', () => {
-  let component: ProjectsComponent;
-  let fixture: ComponentFixture<ProjectsComponent>;
-  let projectService;
+describe('AllProjectsComponent', () => {
+  let component: AllProjectsComponent;
+  let fixture: ComponentFixture<AllProjectsComponent>;
 
   beforeEach(() => {
-    const projectServiceSpy = jasmine.createSpyObj('ProjectService', ['getAllProjects']);
     TestBed.configureTestingModule({
-      declarations: [ProjectsComponent],
-      providers: [{ provide: ProjectService, useValue: projectServiceSpy }]
+      declarations: [AllProjectsComponent],
     });
-    fixture = TestBed.createComponent(ProjectsComponent);
+    fixture = TestBed.createComponent(AllProjectsComponent);
     component = fixture.componentInstance;
-    projectService = TestBed.inject(ProjectService);
     fixture.detectChanges();
   });
 

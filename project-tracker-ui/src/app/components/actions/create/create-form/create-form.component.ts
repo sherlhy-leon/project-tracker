@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -7,7 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './create-form.component.html',
   styleUrls: ['./create-form.component.scss']
 })
-export class CreateFormComponent implements OnInit{
+export class CreateFormComponent {
   form: FormGroup;
 
   constructor(private dialogRef: MatDialogRef<CreateFormComponent>, private formBuilder: FormBuilder) {
@@ -16,8 +16,6 @@ export class CreateFormComponent implements OnInit{
       description: new FormControl(null)
     });
   }
-
-  ngOnInit(): void {}
 
   onCancel() {
     this.dialogRef.close();

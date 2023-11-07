@@ -1,22 +1,21 @@
 
 <div class="container" *ngIf="allProjects?.data">
-    <!-- <app-filter ></app-filter> -->
     <div class="actions">
       <div class="count-and-complete">
-        <span class="count-label">
-          <span class="selected-count"> {{ selection.selected.length}} </span>
-          <span class="custom-label">Selected</span>
-        </span>
         <button mat-button class="completed-button" color="primary" [disabled]="hideCompleteButton" (click)="completeProjectsHandler()">
             COMPLETE
         </button>
+        <app-create-modal></app-create-modal>
       </div>
-      <app-create-modal></app-create-modal>
+      <span class="count-label">
+        <span class="selected-count"> {{ selection.selected.length}} </span>
+        <span class="custom-label">Selected</span>
+      </span>
     </div>
     <table class="all-projects-table" mat-table [dataSource]="allProjects" matSort matSortActive="status" matSortDirection="desc">
         <ng-container matColumnDef="select">
           <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox color="primary"  (click)="$event.stopPropagation()"
+            <mat-checkbox color="primary" 
                           (change)="$event ? masterToggle() : null"
                           [checked]="selection.hasValue() && isAllSelected()"
                           [indeterminate]="selection.hasValue() && !isAllSelected()">
@@ -24,10 +23,12 @@
           </th>
           <td mat-cell *matCellDef="let row">
             <mat-checkbox 
-                [ngClass]="{
-                    'completed-row-checkbox' : isCompleted(row),
-                }"
-                color="primary" (click)="$event.stopPropagation()" (change)="toogleSelection(row)"></mat-checkbox>
+              [ngClass]="{ 'completed-row-checkbox' : isCompleted(row) }"
+              color="primary" 
+              (click)="$event.stopPropagation();" 
+              (change)="$event ? toogleSelection(row) : null"
+              [checked]="selection.isSelected(row)">
+            </mat-checkbox>
           </td>
         </ng-container>
       
@@ -67,7 +68,7 @@
                 'completed-row' : isCompleted(row),
                 'pending-row' : !isCompleted(row),
             }" 
-            *matRowDef="let row; columns: displayedColumns" (mouseenter)="hover(row)"></tr>
+            *matRowDef="let row; columns: displayedColumns"  (click)="toogleSelection(row)" (mouseenter)="hover(row)"></tr>
 
       </table>
       <mat-paginator 

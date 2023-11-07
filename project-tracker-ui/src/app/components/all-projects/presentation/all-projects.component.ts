@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, Input, Output, EventEmitter  } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild, Input, Output, EventEmitter  } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
-import { ProjectService } from 'src/app/services/project.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -60,7 +59,7 @@ export class AllProjectsComponent {
   }
 
   toogleSelection(project: Project) {
-    const toogleValue =  this.selection.select(project)
+    const toogleValue =  this.selection.toggle(project)
     this.hideCompleteButton = !this.selection.hasValue();
     return toogleValue;
   }
